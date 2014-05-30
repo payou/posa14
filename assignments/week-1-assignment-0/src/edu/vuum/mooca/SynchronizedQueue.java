@@ -240,7 +240,7 @@ public class SynchronizedQueue {
             // TODO - you fill in here to wait for the threads to
             // exit.
             producer.join();
-            consumer.join();
+            consumer.join();//test
             
             // Do some sanity checking to see if the Threads work as
             // expected.
