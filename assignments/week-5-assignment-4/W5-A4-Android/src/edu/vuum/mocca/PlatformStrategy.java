@@ -1,6 +1,6 @@
 package edu.vuum.mocca;
 
-/** 
+/**
  * @class PlatformStrategy
  *
  * @brief Provides methods that define a platform-independent API for
@@ -24,7 +24,7 @@ public abstract class PlatformStrategy
         return mUniqueInstance;
     }
 
-    /** 
+    /**
      * Method that sets a new PlatformStrategy singleton and returns the one
      * and only singleton instance.
      */
@@ -45,7 +45,7 @@ public abstract class PlatformStrategy
     /** Barrier that waits for all the game threads to finish. */
     public abstract void awaitDone();
 
-   /**
+    /**
      * Returns the name of the platform in a string. e.g., Android or
      * a JVM.
      * @deprecated This method is just here for backwards

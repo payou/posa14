@@ -6,22 +6,22 @@ package edu.vuum.mocca;
  * @brief This class is the main entry point for the command-line
  *        version of the PlayPingPong app.
  */
-public class Main 
+public class Main
 {
     /**
      * The Java virtual machine requires the instantiation of a main
      * method to run the console version of the PlayPingPong app.
      */
-    public static void main(String[] args) 
+    public static void main(String[] args)
     {
-        /** 
+        /**
          * Initializes the Platform singleton with the appropriate
          * PlatformStrategy, which in this case will be the
          * ConsolePlatform.
          */
         PlatformStrategy.instance
-            (new PlatformStrategyFactory(System.out,
-                                         null).makePlatformStrategy());
+                (new PlatformStrategyFactory(System.out,
+                        null).makePlatformStrategy());
 
         /** Initializes the Options singleton. */
         Options.instance().parseArgs(args);
@@ -31,10 +31,10 @@ public class Main
          * iterations.
          */
         PlayPingPong pingPong =
-            new PlayPingPong(PlatformStrategy.instance(),
-                             Options.instance().maxIterations(),
-                             Options.instance().maxTurns(),
-                             Options.instance().syncMechanism());
+                new PlayPingPong(PlatformStrategy.instance(),
+                        Options.instance().maxIterations(),
+                        Options.instance().maxTurns(),
+                        Options.instance().syncMechanism());
 
         /**
          * Start a thread to play ping-pong.

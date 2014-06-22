@@ -2,7 +2,7 @@ package edu.vuum.mocca;
 
 /**
  * @class Options
- * 
+ *
  * @brief This class implements the Singleton pattern to handle
  *        command-line option processing.
  */
@@ -67,10 +67,10 @@ public class Options
                 else if (argv[argc].equals("-t"))
                     mMaxTurns = Integer.parseInt(argv[argc + 1]);
                 else
-                    {
-                        printUsage();
-                        return false;
-                    }
+                {
+                    printUsage();
+                    return false;
+                }
         }
 
         return true;

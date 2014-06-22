@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 /**
  * @class MainActivity
- * 
+ *
  * @brief Initial start up screen for the android GUI.
  */
 public class PingPongActivity extends Activity {
@@ -29,16 +29,16 @@ public class PingPongActivity extends Activity {
         // Sets the content view to the xml file, activity_ping_pong.
         setContentView(R.layout.activity_ping_pong);
         mAndroidPingPongOutput =
-            (TextView) findViewById(R.id.pingpong_output);
+                (TextView) findViewById(R.id.pingpong_output);
         mPlayButton = (Button) findViewById(R.id.play_button);
 
         // Initializes the Platform singleton with the appropriate
         // Platform strategy, which in this case will be the
         // AndroidPlatform.
         PlatformStrategy.instance
-            (new PlatformStrategyFactory
-             (mAndroidPingPongOutput,
-              this).makePlatformStrategy());
+                (new PlatformStrategyFactory
+                        (mAndroidPingPongOutput,
+                                this).makePlatformStrategy());
 
         // Initializes the Options singleton. 
         Options.instance().parseArgs(null);
@@ -50,10 +50,10 @@ public class PingPongActivity extends Activity {
             // Use a factory method to create the appropriate type of
             // OutputStrategy.
             PlayPingPong pingPong =
-                new PlayPingPong(PlatformStrategy.instance(),
-                                 Options.instance().maxIterations(),
-                                 Options.instance().maxTurns(),
-                                 Options.instance().syncMechanism());
+                    new PlayPingPong(PlatformStrategy.instance(),
+                            Options.instance().maxIterations(),
+                            Options.instance().maxTurns(),
+                            Options.instance().syncMechanism());
 
             // Play ping-pong with the designated number of
             // iterations.

@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @class PlayPingPong
- * 
+ *
  * @brief This class implements a Java program that creates two threads, Ping
  *        and Pong, to alternately print "Ping" and "Pong", respectively, on the
  *        display. It uses the Template Method, Strategy, and Factory Method
@@ -41,7 +41,7 @@ public class PlayPingPong implements Runnable {
 
     /**
      * @Brief PingPongThread
-     * 
+     *
      * @class This class implements the core ping/pong algorithm, but
      *        defers the scheduling aspect to subclasses. It plays the
      *        role of the "Abstract Class" in the Template Method
@@ -96,12 +96,12 @@ public class PlayPingPong implements Runnable {
 
         // Data member that indicates the string to print (typically a
         // "ping" or a "pong").
-        protected String mStringToPrint;
+        protected final String mStringToPrint;
     }
 
     /**
      * @class PingPongThreadSema
-     * 
+     *
      * @brief This class uses semaphores to implement the acquire() and
      *        release() hook methods that schedule the ping/pong algorithm. It
      *        plays the role of the "Concrete Class" in the Template Method
@@ -144,7 +144,7 @@ public class PlayPingPong implements Runnable {
 
     /**
      * @class PingPongThreadCond
-     * 
+     *
      * @brief This class uses Conditions to implement the acquire() and
      *        release() hook methods that schedule the ping/pong algorithm. It
      *        plays the role of the "Concrete Class" in the Template Method
@@ -232,7 +232,7 @@ public class PlayPingPong implements Runnable {
      * play ping/pong.
      */
     public PlayPingPong(PlatformStrategy platformStrategy, int maxIterations,
-			int maxTurns, String syncMechanism) {
+                        int maxTurns, String syncMechanism) {
         // The PlatformStrategy being used.
         mPlatformStrategy = platformStrategy;
 
@@ -253,17 +253,17 @@ public class PlayPingPong implements Runnable {
 
     private void formatStrings() {
         if (!checkedStringFormatting) {
-        	PlatformStrategyFactory.PlatformType type = 
-        			PlatformStrategyFactory.PlatformType.ANDROID;
-        			
-            if (PlatformStrategyFactory.platformType().equals(type)) 
+            PlatformStrategyFactory.PlatformType type =
+                    PlatformStrategyFactory.PlatformType.ANDROID;
+
+            if (PlatformStrategyFactory.platformType().equals(type))
                 pingString += "  ";
             checkedStringFormatting = true;
         }
     }
 
     private void makePingPongThreads(String schedMechanism,
-            PingPongThread[] pingPongThreads) {
+                                     PingPongThread[] pingPongThreads) {
         formatStrings();
         if (schedMechanism.equals("SEMA")) {
             // Create the semaphores that schedule threads
@@ -273,22 +273,22 @@ public class PlayPingPong implements Runnable {
             Semaphore pongSema = new Semaphore(0);
 
             pingPongThreads[PING_THREAD] = new PingPongThreadSema(pingString,
-                                                                  pingSema, pongSema);
+                    pingSema, pongSema);
             pingPongThreads[PONG_THREAD] = new PingPongThreadSema(pongString,
-                                                                  pongSema, pingSema);
+                    pongSema, pingSema);
         } else if (schedMechanism.equals("COND")) {
             ReentrantLock lock = new ReentrantLock();
             Condition pingCond = lock.newCondition();
             Condition pongCond = lock.newCondition();
 
             pingPongThreads[PING_THREAD] = new PingPongThreadCond(pingString,
-                                                                  lock, pingCond, pongCond, true);
+                    lock, pingCond, pongCond, true);
             pingPongThreads[PONG_THREAD] = new PingPongThreadCond(pongString,
-                                                                  lock, pongCond, pingCond, false);
+                    lock, pongCond, pingCond, false);
             pingPongThreads[PING_THREAD]
-                .setOtherThreadId(pingPongThreads[PONG_THREAD].getId());
+                    .setOtherThreadId(pingPongThreads[PONG_THREAD].getId());
             pingPongThreads[PONG_THREAD]
-                .setOtherThreadId(pingPongThreads[PING_THREAD].getId());
+                    .setOtherThreadId(pingPongThreads[PING_THREAD].getId());
         }
     }
 

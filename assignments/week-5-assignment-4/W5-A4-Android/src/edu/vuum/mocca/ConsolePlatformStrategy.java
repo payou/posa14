@@ -23,11 +23,11 @@ public class ConsolePlatformStrategy extends PlatformStrategy
     PrintStream mOutput;
 
     /** Ctor. */
-    public ConsolePlatformStrategy(Object output) 
+    public ConsolePlatformStrategy(Object output)
     {
         mOutput = (PrintStream) output;
     }
-	
+
     /** Do any initialization needed to start a new game. */
     public void begin()
     {
@@ -46,7 +46,7 @@ public class ConsolePlatformStrategy extends PlatformStrategy
     {
         mLatch.countDown();
     }
-    
+
     /** Barrier that waits for all the game threads to finish. */
     public void awaitDone()
     {
@@ -60,7 +60,7 @@ public class ConsolePlatformStrategy extends PlatformStrategy
      * Error log formats the message and displays it for the debugging
      * purposes.
      */
-    public void errorLog(String javaFile, String errorMessage) 
+    public void errorLog(String javaFile, String errorMessage)
     {
         mOutput.println(javaFile + " " + errorMessage);
     }
